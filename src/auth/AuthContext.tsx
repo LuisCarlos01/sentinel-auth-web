@@ -34,22 +34,30 @@ function toUser(accessToken: string, email: string | null): AuthUser | null {
 }
 
 /**
- * Access token só vive em memória (ADR-0002) — por isso todo reload perde o
- * token e precisa ser "reconstruído" a partir do refresh token, que
- * sobrevive no cookie httpOnly. Esse bootstrap roda uma vez ao montar.
+ * Access token E refresh token só vivem em memória (ADR-0002) — nunca
+ * `localStorage`/`sessionStorage`. O cookie httpOnly do refresh token é
+ * `SameSite=Strict`, que o browser não anexa em request cross-site (front
+ * na Vercel, API noutro domínio) — por isso o valor do corpo da resposta é
+ * o canal que de fato importa em produção; o cookie só ajuda no caso
+ * same-site (dev local via proxy). Todo reload perde os dois tokens: sem
+ * nada persistido, só dá pra reconstruir a sessão via cookie quando
+ * same-site — esse bootstrap roda uma vez ao montar.
  */
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<Status>('loading');
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<AuthUser | null>(null);
+  const refreshTokenRef = useRef<string | null>(null);
 
-  const applySession = useCallback((token: string, email: string | null = null) => {
+  const applySession = useCallback((token: string, refreshToken: string, email: string | null = null) => {
+    refreshTokenRef.current = refreshToken;
     setAccessToken(token);
     setUser(toUser(token, email));
     setStatus('authenticated');
   }, []);
 
   const clearSession = useCallback(() => {
+    refreshTokenRef.current = null;
     setAccessToken(null);
     setUser(null);
     setStatus('unauthenticated');
@@ -65,14 +73,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     hasBootstrapped.current = true;
     authApi
       .refresh()
-      .then((res) => applySession(res.accessToken))
+      .then((res) => applySession(res.accessToken, res.refreshToken))
       .catch(() => clearSession());
   }, [applySession, clearSession]);
 
   const login = useCallback(
     async (email: string, password: string) => {
       const res = await authApi.login({ email, password });
-      applySession(res.accessToken, email);
+      applySession(res.accessToken, res.refreshToken, email);
     },
     [applySession],
   );
@@ -83,7 +91,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = useCallback(async () => {
     try {
-      if (accessToken) await authApi.logout(accessToken);
+      if (accessToken) await authApi.logout(accessToken, refreshTokenRef.current ?? undefined);
     } catch (err) {
       // 401 aqui só significa que a sessão já tinha expirado — segue o
       // logout local de qualquer forma, não há o que fazer no servidor

@@ -38,16 +38,26 @@ export function login(body: LoginRequest) {
 }
 
 /**
- * Sem corpo — o refresh token viaja só pelo cookie httpOnly (ADR-0002), o
- * backend lê o cookie antes do body mesmo que um fosse enviado
- * (`AuthController.resolveRefreshToken`, cookie vence).
+ * O refresh token viaja explícito no corpo (não só no cookie httpOnly) —
+ * necessário porque o cookie é `SameSite=Strict`, que o browser nunca anexa
+ * em request cross-site (front na Vercel, API em outro domínio); o corpo é
+ * o único canal que funciona nesse caso (ver ADR-0002, corrigido). Ainda
+ * assim manda `credentials: 'include'` (via `apiFetch`) — inofensivo, e
+ * cobre o caso same-site (dev local via proxy) de graça.
  */
-export function refresh() {
-  return apiFetch<LoginResponse>('/api/v1/auth/refresh', { method: 'POST' });
+export function refresh(refreshToken?: string) {
+  return apiFetch<LoginResponse>('/api/v1/auth/refresh', {
+    method: 'POST',
+    body: refreshToken ? { refreshToken } : undefined,
+  });
 }
 
-export function logout(accessToken: string) {
-  return apiFetch<void>('/api/v1/auth/logout', { method: 'POST', accessToken });
+export function logout(accessToken: string, refreshToken?: string) {
+  return apiFetch<void>('/api/v1/auth/logout', {
+    method: 'POST',
+    accessToken,
+    body: refreshToken ? { refreshToken } : undefined,
+  });
 }
 
 export function listUsers(accessToken: string) {
