@@ -7,7 +7,7 @@ export function DashboardPage() {
   const isAdmin = user?.roles.includes('ADMIN') ?? false;
 
   return (
-    <div className="flex min-h-dvh w-full flex-col items-center justify-center bg-[var(--background)] px-6 text-center">
+    <div className="flex min-h-[var(--app-height)] w-full flex-col items-center justify-center bg-[var(--background)] px-6 text-center">
       <img src={logoLogin} alt="Sentinel" className="h-14 w-14 object-contain" />
       <span
         className="mt-2 text-sm font-bold tracking-[0.35em] text-[var(--accent)]"

@@ -43,7 +43,7 @@ export function WaveMobileCard({ state }: { state: AuthCardState }) {
   }
 
   return (
-    <div className="relative min-h-dvh w-full overflow-hidden bg-[var(--form-panel)]">
+    <div className="relative min-h-[var(--app-height)] w-full overflow-hidden bg-[var(--form-panel)]">
       {/* mesma cordinha do desktop, só que compacta e ancorada mais perto da
           borda — a tela é bem mais estreita, então a corda de repouso e o
           alcance do arraste também encolhem, senão o pingente esbarraria
@@ -59,7 +59,7 @@ export function WaveMobileCard({ state }: { state: AuthCardState }) {
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={`form-${mode}`}
-          className="relative z-10 flex min-h-dvh flex-col justify-center px-6 py-10"
+          className="relative z-10 flex min-h-[var(--app-height)] flex-col justify-center px-6 py-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: MOBILE_CONTENT_ENTER_TRANSITION }}
           exit={{ opacity: 0, transition: CONTENT_EXIT_TRANSITION }}

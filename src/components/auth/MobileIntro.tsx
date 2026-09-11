@@ -159,7 +159,7 @@ export function MobileIntro({ onComplete }: { onComplete: () => void }) {
   }, [onComplete]);
 
   return (
-    <div ref={rootRef} className="pointer-events-none fixed inset-x-0 top-0 z-50 h-dvh overflow-hidden">
+    <div ref={rootRef} className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[var(--app-height)] overflow-hidden">
       {/* base sólida sempre opaca desde o primeiro frame — a imagem de fundo
           (2MB+) leva um instante pra carregar/decodificar, e sem essa base o
           card real (já montado atrás, com a onda de repouso visível) vaza
