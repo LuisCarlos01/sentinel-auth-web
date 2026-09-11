@@ -1,0 +1,3 @@
+# Single environment: production only, no staging
+
+This is a small-scale portfolio project with one real backend deployment (`https://52-14-171-76.sslip.io`, documented in `sentinel-auth-api` as a "public demonstration" instance but functionally the only environment that exists or is planned). We deliberately did not introduce a staging `.env` or a staging deploy target to mirror it: `.env.development` points at a local backend (`http://localhost:8080` via docker compose) and `.env.production` points directly at the one deployed instance. A staging environment can be introduced later if a real need for one appears; until then, adding one would be speculative infrastructure with nothing to validate against.

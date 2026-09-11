@@ -1,0 +1,3 @@
+# Deploy via Vercel's native GitHub integration, not a CI deploy step
+
+Vercel's GitHub integration already deploys previews on PRs and production on push to `main` without any custom workflow. We deliberately did not add a deploy step to GitHub Actions for this: doing so alongside Vercel's native integration would either double-deploy or require disabling the native integration to centralize on Actions, and there's no requirement (pre-deploy step Vercel can't run, multi-target deploy, etc.) that justifies that extra complexity. GitHub Actions is scoped to lint + typecheck + Vitest as a PR gate; Vercel owns the deploy.
