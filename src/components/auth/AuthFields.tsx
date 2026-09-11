@@ -74,7 +74,9 @@ function UnderlineField({ icon, label, type, name, autoComplete, value, onChange
           onChange={(e) => onChange(e.target.value)}
           className={`w-full border-0 border-b bg-transparent pb-1.5 text-sm outline-none transition-colors focus:border-[var(--accent)] ${
             isPassword ? 'pr-7' : ''
-          } ${error ? 'border-red-500' : isDark ? 'border-zinc-700 text-zinc-100 placeholder:text-zinc-600' : 'border-zinc-300 text-zinc-900'}`}
+          } ${error ? 'border-red-500' : isDark ? 'border-zinc-700' : 'border-zinc-300'} ${
+            isDark ? 'text-zinc-100 placeholder:text-zinc-600' : 'text-zinc-900'
+          }`}
         />
         {isPassword && (
           <button
