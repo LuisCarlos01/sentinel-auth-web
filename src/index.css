@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
+  --accent: #0e96b5;
+  --accent-foreground: #ffffff;
+  --form-panel: #18181b;
+  --form-foreground: #fafafa;
+  --font-wordmark: 'Orbitron', system-ui, sans-serif;
+}
+
+/* Modo escuro é o padrão (mesmos valores de `:root`, repetidos aqui só pra
+   deixar explícito) — modo claro sobrescreve via `data-theme` na `<html>`,
+   setado pelo `ThemeProvider`. */
+:root[data-theme='light'] {
+  --form-panel: #f4f6f7;
+  --form-foreground: #101820;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+}

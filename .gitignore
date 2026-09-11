@@ -1,0 +1,18 @@
+# IDEA
+.idea
+
+# MCPs
+.mcp.json
+
+# App
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+# Playwright MCP test artifacts
+.playwright-mcp
+
+# Claude
+.claude
