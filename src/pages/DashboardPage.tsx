@@ -16,7 +16,7 @@ export function DashboardPage() {
         SENTINEL
       </span>
 
-      <h1 className="mt-8 text-2xl font-semibold">
+      <h1 className="mt-8 max-w-full text-2xl font-semibold break-all">
         {user?.email ? `Welcome, ${user.email}!` : 'Welcome back!'}
       </h1>
       <p className="mt-2 text-sm text-[var(--muted-foreground)]">Your account is safe and sound.</p>
