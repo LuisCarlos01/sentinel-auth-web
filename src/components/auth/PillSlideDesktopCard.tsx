@@ -79,7 +79,7 @@ export function PillSlideDesktopCard({ state }: { state: AuthCardState }) {
   const { theme } = useTheme();
 
   return (
-    <div className="relative min-h-svh w-full overflow-hidden bg-[var(--form-panel)]">
+    <div className="relative min-h-dvh w-full overflow-hidden bg-[var(--form-panel)]">
       <PullCord />
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
