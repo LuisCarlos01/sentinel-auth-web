@@ -1,13 +1,5 @@
 # Sentinel Auth Web
 
-SPA de autenticação (registro, login, área autenticada e listagem de usuários restrita a admin) que consome o backend [`sentinel-auth-api`](https://github.com/LuisCarlos01/sentinel-auth-api) via REST/JWT. Sem servidor próprio: todo o estado de sessão vive no browser.
-
-**Produção:** https://sentinel-auth-web-luiscalos01.vercel.app
-
-<p align="center">
-  <img src="docs/media/demo.gif" alt="Demo do fluxo de login/registro" width="480" />
-</p>
-
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
@@ -16,6 +8,14 @@ SPA de autenticação (registro, login, área autenticada e listagem de usuário
   <img src="https://img.shields.io/badge/React_Router-7-CA4245?logo=reactrouter&logoColor=white" alt="React Router 7" />
   <img src="https://img.shields.io/badge/pnpm-F69220?logo=pnpm&logoColor=white" alt="pnpm" />
   <img src="https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white" alt="Vercel" />
+</p>
+
+SPA de autenticação (registro, login, área autenticada e listagem de usuários restrita a admin) que consome o backend [`sentinel-auth-api`](https://github.com/LuisCarlos01/sentinel-auth-api) via REST/JWT. Sem servidor próprio: todo o estado de sessão vive no browser.
+
+**Produção:** https://sentinel-auth-web-luiscalos01.vercel.app
+
+<p align="center">
+  <img src="docs/media/demo.gif" alt="Demo do fluxo de login/registro" width="480" />
 </p>
 
 ## Arquitetura
