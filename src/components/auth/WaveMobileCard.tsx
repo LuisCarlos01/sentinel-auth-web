@@ -5,7 +5,11 @@ import { useTheme } from '../../theme/ThemeContext';
 import logoLogin from '../../assets/logo-login.png';
 import { AuthCta } from './AuthCta';
 import { AuthFields } from './AuthFields';
-import { CONTENT_EXIT_TRANSITION, MOBILE_CONTENT_ENTER_TRANSITION, WAVE_TRANSITION } from './motionConfig';
+import {
+  CONTENT_EXIT_TRANSITION,
+  MOBILE_CONTENT_ENTER_TRANSITION,
+  WAVE_TRANSITION,
+} from './motionConfig';
 import { PullCord } from './PullCord';
 
 const COPY = {

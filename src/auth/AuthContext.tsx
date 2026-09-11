@@ -1,4 +1,12 @@
-import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
 import { ApiError } from './apiClient';
 import * as authApi from './authApi';
 import { decodeAccessToken } from './jwt';
@@ -49,12 +57,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
   const refreshTokenRef = useRef<string | null>(null);
 
-  const applySession = useCallback((token: string, refreshToken: string, email: string | null = null) => {
-    refreshTokenRef.current = refreshToken;
-    setAccessToken(token);
-    setUser(toUser(token, email));
-    setStatus('authenticated');
-  }, []);
+  const applySession = useCallback(
+    (token: string, refreshToken: string, email: string | null = null) => {
+      refreshTokenRef.current = refreshToken;
+      setAccessToken(token);
+      setUser(toUser(token, email));
+      setStatus('authenticated');
+    },
+    [],
+  );
 
   const clearSession = useCallback(() => {
     refreshTokenRef.current = null;

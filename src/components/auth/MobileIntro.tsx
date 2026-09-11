@@ -12,13 +12,55 @@ const ACCENT = '#0e96b5';
 // no fundo (`fundo.png`) — cada um nasce, viaja de `from` até `to` e some,
 // em loop com uma pausa entre ciclos, simulando corrente passando pelo fio.
 const CIRCUIT_SPARKS = [
-  { from: { left: '12%', top: '14%' }, to: { left: '12%', top: '30%' }, duration: 1.6, delay: 0, repeatDelay: 1.2 },
-  { from: { left: '70%', top: '3%' }, to: { left: '70%', top: '15%' }, duration: 1.2, delay: 0.5, repeatDelay: 1.6 },
-  { from: { left: '5%', top: '50%' }, to: { left: '24%', top: '62%' }, duration: 1.9, delay: 0.9, repeatDelay: 1 },
-  { from: { left: '93%', top: '46%' }, to: { left: '78%', top: '57%' }, duration: 1.7, delay: 1.2, repeatDelay: 1.3 },
-  { from: { left: '23%', top: '69%' }, to: { left: '23%', top: '82%' }, duration: 1.4, delay: 0.3, repeatDelay: 1.5 },
-  { from: { left: '59%', top: '81%' }, to: { left: '59%', top: '95%' }, duration: 1.3, delay: 0.7, repeatDelay: 1.4 },
-  { from: { left: '80%', top: '64%' }, to: { left: '64%', top: '78%' }, duration: 1.7, delay: 1.4, repeatDelay: 1.1 },
+  {
+    from: { left: '12%', top: '14%' },
+    to: { left: '12%', top: '30%' },
+    duration: 1.6,
+    delay: 0,
+    repeatDelay: 1.2,
+  },
+  {
+    from: { left: '70%', top: '3%' },
+    to: { left: '70%', top: '15%' },
+    duration: 1.2,
+    delay: 0.5,
+    repeatDelay: 1.6,
+  },
+  {
+    from: { left: '5%', top: '50%' },
+    to: { left: '24%', top: '62%' },
+    duration: 1.9,
+    delay: 0.9,
+    repeatDelay: 1,
+  },
+  {
+    from: { left: '93%', top: '46%' },
+    to: { left: '78%', top: '57%' },
+    duration: 1.7,
+    delay: 1.2,
+    repeatDelay: 1.3,
+  },
+  {
+    from: { left: '23%', top: '69%' },
+    to: { left: '23%', top: '82%' },
+    duration: 1.4,
+    delay: 0.3,
+    repeatDelay: 1.5,
+  },
+  {
+    from: { left: '59%', top: '81%' },
+    to: { left: '59%', top: '95%' },
+    duration: 1.3,
+    delay: 0.7,
+    repeatDelay: 1.4,
+  },
+  {
+    from: { left: '80%', top: '64%' },
+    to: { left: '64%', top: '78%' },
+    duration: 1.7,
+    delay: 1.4,
+    repeatDelay: 1.1,
+  },
 ];
 
 // Campo de partículas espalhadas pela tela toda (como o rastro de
@@ -115,7 +157,11 @@ export function MobileIntro({ onComplete }: { onComplete: () => void }) {
         .set(waveRef.current, { height: '0%' })
         .set(stars, { opacity: 0, scale: 0 })
         // 0. campo de partículas acende, espalhado, antes da logo aparecer
-        .to(stars, { opacity: 1, scale: 1, duration: 0.5, stagger: { each: 0.025, from: 'random' } }, 0)
+        .to(
+          stars,
+          { opacity: 1, scale: 1, duration: 0.5, stagger: { each: 0.025, from: 'random' } },
+          0,
+        )
         // 1. flare de brilho anuncia a logo, que entra em seguida e assenta
         //    com um micro overshoot (a imagem já traz anéis + brilho prontos)
         .to(glowRef.current, { opacity: 0.8, scale: 1.15, duration: 0.4, ease: 'power1.out' }, 0.15)
@@ -124,10 +170,18 @@ export function MobileIntro({ onComplete }: { onComplete: () => void }) {
         .to({}, { duration: 0.3 })
         // 2. a logo some e um feixe de luz sobe do centro dela até o topo
         .addLabel('vanish')
-        .to([markRef.current, glowRef.current], { opacity: 0, scale: 0.85, duration: 0.35, ease: 'power1.in' }, 'vanish')
+        .to(
+          [markRef.current, glowRef.current],
+          { opacity: 0, scale: 0.85, duration: 0.35, ease: 'power1.in' },
+          'vanish',
+        )
         .to(beamRef.current, { height: '50%', duration: 0.55, ease: 'power2.in' }, 'vanish+=0.1')
         // flash quando o feixe "bate" no topo
-        .to(flashRef.current, { opacity: 1, scale: 1, duration: 0.18, ease: 'power1.out' }, 'vanish+=0.6')
+        .to(
+          flashRef.current,
+          { opacity: 1, scale: 1, duration: 0.18, ease: 'power1.out' },
+          'vanish+=0.6',
+        )
         .to(flashRef.current, { opacity: 0, scale: 1.6, duration: 0.35, ease: 'power1.out' }, '>')
         .to(beamRef.current, { opacity: 0, duration: 0.25 }, '<')
         .to(stars, { opacity: 0, duration: 0.25 }, '<')
@@ -159,13 +213,25 @@ export function MobileIntro({ onComplete }: { onComplete: () => void }) {
   }, [onComplete]);
 
   return (
-    <div ref={rootRef} className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[var(--app-height)] overflow-hidden">
+    <div
+      ref={rootRef}
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[var(--app-height)] overflow-hidden"
+    >
       {/* base sólida sempre opaca desde o primeiro frame — a imagem de fundo
           (2MB+) leva um instante pra carregar/decodificar, e sem essa base o
           card real (já montado atrás, com a onda de repouso visível) vaza
           por trás enquanto o <img> ainda está transparente */}
-      <div ref={baseRef} className={`absolute inset-0 ${theme === 'light' ? 'bg-white' : 'bg-black'}`} />
-      <img ref={bgRef} src={circuitBackground} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
+      <div
+        ref={baseRef}
+        className={`absolute inset-0 ${theme === 'light' ? 'bg-white' : 'bg-black'}`}
+      />
+      <img
+        ref={bgRef}
+        src={circuitBackground}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
 
       <div ref={sparksRef} className="absolute inset-0 z-[6]">
         {CIRCUIT_SPARKS.map((_spark, i) => (
@@ -209,7 +275,11 @@ export function MobileIntro({ onComplete }: { onComplete: () => void }) {
 
       {/* cúpula: nasce ancorada no topo (silhueta invertida da onda do card)
           e cresce pra baixo, cobrindo a tela devagar */}
-      <div ref={domeRef} className="absolute inset-x-[-25%] top-0 z-20 overflow-hidden rounded-b-[100%]" style={{ backgroundColor: ACCENT }}>
+      <div
+        ref={domeRef}
+        className="absolute inset-x-[-25%] top-0 z-20 overflow-hidden rounded-b-[100%]"
+        style={{ backgroundColor: ACCENT }}
+      >
         {/* trilho de circuito decorativo na borda de avanço (acompanha a cúpula) */}
         <div className="absolute inset-x-0 bottom-0 flex h-6 items-end justify-around px-[15%] opacity-80">
           {[10, 22, 14, 28, 16, 24, 12].map((h, i) => (
@@ -220,12 +290,19 @@ export function MobileIntro({ onComplete }: { onComplete: () => void }) {
             />
           ))}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-[2px] bg-white" style={{ boxShadow: '0 0 8px 2px rgba(255,255,255,0.9)' }} />
+        <div
+          className="absolute inset-x-0 bottom-0 h-[2px] bg-white"
+          style={{ boxShadow: '0 0 8px 2px rgba(255,255,255,0.9)' }}
+        />
       </div>
 
       {/* faixa de repouso: recebe o bastão da cúpula já com cobertura total
           e recolhe devagar até a mesma forma/posição da onda real do card */}
-      <div ref={waveRef} className="absolute inset-x-[-25%] bottom-0 z-20 rounded-t-[100%]" style={{ backgroundColor: ACCENT }} />
+      <div
+        ref={waveRef}
+        className="absolute inset-x-[-25%] bottom-0 z-20 rounded-t-[100%]"
+        style={{ backgroundColor: ACCENT }}
+      />
 
       <div className="absolute inset-0 z-30 flex items-center justify-center">
         <img

@@ -5,7 +5,11 @@ import { useTheme } from '../../theme/ThemeContext';
 import logoLogin from '../../assets/logo-login.png';
 import { AuthCta } from './AuthCta';
 import { AuthFields } from './AuthFields';
-import { CONTENT_ENTER_TRANSITION, CONTENT_EXIT_TRANSITION, PILL_SLIDE_TRANSITION } from './motionConfig';
+import {
+  CONTENT_ENTER_TRANSITION,
+  CONTENT_EXIT_TRANSITION,
+  PILL_SLIDE_TRANSITION,
+} from './motionConfig';
 import { PullCord } from './PullCord';
 
 const REVEAL_SPRING = { type: 'spring', stiffness: 220, damping: 26 } as const;
@@ -98,7 +102,11 @@ export function PillSlideDesktopCard({ state }: { state: AuthCardState }) {
             }}
           >
             <div className="mb-8 flex flex-col items-center lg:mb-10">
-              <img src={logoLogin} alt="Sentinel" className="h-12 w-12 object-contain sm:h-14 sm:w-14 lg:h-16 lg:w-16" />
+              <img
+                src={logoLogin}
+                alt="Sentinel"
+                className="h-12 w-12 object-contain sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+              />
               <span
                 className="mt-2 text-xs font-bold tracking-[0.3em] text-[var(--accent)] sm:text-sm sm:tracking-[0.35em] lg:text-base"
                 style={{ fontFamily: 'var(--font-wordmark)' }}
@@ -133,8 +141,12 @@ export function PillSlideDesktopCard({ state }: { state: AuthCardState }) {
             animate={{ opacity: 1, transition: CONTENT_ENTER_TRANSITION }}
             exit={{ opacity: 0, transition: CONTENT_EXIT_TRANSITION }}
           >
-            <h2 className="mb-3 text-2xl font-bold sm:text-3xl lg:text-4xl xl:text-5xl">{copy.headline}</h2>
-            <p className="max-w-[220px] text-xs opacity-90 sm:max-w-xs sm:text-sm lg:max-w-sm lg:text-base">{copy.body}</p>
+            <h2 className="mb-3 text-2xl font-bold sm:text-3xl lg:text-4xl xl:text-5xl">
+              {copy.headline}
+            </h2>
+            <p className="max-w-[220px] text-xs opacity-90 sm:max-w-xs sm:text-sm lg:max-w-sm lg:text-base">
+              {copy.body}
+            </p>
           </motion.div>
         </AnimatePresence>
       </motion.div>

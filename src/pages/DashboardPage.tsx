@@ -22,7 +22,10 @@ export function DashboardPage() {
       <p className="mt-2 text-sm text-[var(--muted-foreground)]">Your account is safe and sound.</p>
 
       {isAdmin && (
-        <Link to="/admin/users" className="mt-6 text-sm font-medium text-[var(--accent)] hover:underline">
+        <Link
+          to="/admin/users"
+          className="mt-6 text-sm font-medium text-[var(--accent)] hover:underline"
+        >
           View user list →
         </Link>
       )}

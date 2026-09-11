@@ -30,7 +30,13 @@ const DODGE_TRANSITION = { type: 'spring', stiffness: 500, damping: 24 } as cons
  * desvio) assim que a senha é preenchida. Ignorado em touch
  * (`pointerType !== 'mouse'`), então não afeta mobile.
  */
-export function AuthCta({ state, formTone = 'dark' }: { state: AuthCardState; formTone?: 'dark' | 'light' }) {
+export function AuthCta({
+  state,
+  formTone = 'dark',
+}: {
+  state: AuthCardState;
+  formTone?: 'dark' | 'light';
+}) {
   const { mode, toggleMode, form, pending, formError, notice } = state;
   const isDark = formTone === 'dark';
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -74,8 +80,14 @@ export function AuthCta({ state, formTone = 'dark' }: { state: AuthCardState; fo
       const targetCenterY = e.clientY + dirY * (SAFE_RADIUS + PUSH_MARGIN);
 
       const next = {
-        x: Math.max(-MAX_DODGE_X, Math.min(MAX_DODGE_X, dodgeRef.current.x + (targetCenterX - centerX))),
-        y: Math.max(-MAX_DODGE_Y, Math.min(MAX_DODGE_Y, dodgeRef.current.y + (targetCenterY - centerY))),
+        x: Math.max(
+          -MAX_DODGE_X,
+          Math.min(MAX_DODGE_X, dodgeRef.current.x + (targetCenterX - centerX)),
+        ),
+        y: Math.max(
+          -MAX_DODGE_Y,
+          Math.min(MAX_DODGE_Y, dodgeRef.current.y + (targetCenterY - centerY)),
+        ),
       };
       dodgeRef.current = next;
       setDodge(next);
@@ -91,7 +103,9 @@ export function AuthCta({ state, formTone = 'dark' }: { state: AuthCardState; fo
   return (
     <>
       {(formError ?? notice) && (
-        <p className={`mt-4 text-xs ${formError ? 'text-red-500' : 'text-[var(--accent)]'}`}>{formError ?? notice}</p>
+        <p className={`mt-4 text-xs ${formError ? 'text-red-500' : 'text-[var(--accent)]'}`}>
+          {formError ?? notice}
+        </p>
       )}
 
       <div className="relative mt-6">

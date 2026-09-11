@@ -3,7 +3,13 @@ import type { AuthCardState } from '../../auth/useAuthCardState';
 
 function EmailIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75}>
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+    >
       <path d="M3 6h18v12H3z" strokeLinejoin="round" />
       <path d="m3 7 9 6 9-6" strokeLinejoin="round" />
     </svg>
@@ -12,7 +18,13 @@ function EmailIcon() {
 
 function LockIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75}>
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+    >
       <rect x="5" y="11" width="14" height="9" rx="1.5" />
       <path d="M8 11V7a4 4 0 0 1 8 0v4" />
     </svg>
@@ -21,7 +33,15 @@ function LockIcon() {
 
 function EyeIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z" />
       <circle cx="12" cy="12" r="3" />
     </svg>
@@ -30,7 +50,15 @@ function EyeIcon() {
 
 function EyeOffIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M3 3l18 18" />
       <path d="M10.6 5.2A10.9 10.9 0 0 1 12 5c7 0 10.5 7 10.5 7a15.5 15.5 0 0 1-3.4 4.3M6.6 6.6C3.4 8.6 1.5 12 1.5 12s3.5 7 10.5 7a10.4 10.4 0 0 0 4.2-.9" />
       <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" />
@@ -50,7 +78,17 @@ interface UnderlineFieldProps {
   error?: string;
 }
 
-function UnderlineField({ icon, label, type, name, autoComplete, value, onChange, formTone, error }: UnderlineFieldProps) {
+function UnderlineField({
+  icon,
+  label,
+  type,
+  name,
+  autoComplete,
+  value,
+  onChange,
+  formTone,
+  error,
+}: UnderlineFieldProps) {
   const isDark = formTone === 'dark';
   const isPassword = type === 'password';
   const [revealed, setRevealed] = useState(false);
@@ -97,7 +135,13 @@ function UnderlineField({ icon, label, type, name, autoComplete, value, onChange
   );
 }
 
-export function AuthFields({ state, formTone = 'dark' }: { state: AuthCardState; formTone?: 'dark' | 'light' }) {
+export function AuthFields({
+  state,
+  formTone = 'dark',
+}: {
+  state: AuthCardState;
+  formTone?: 'dark' | 'light';
+}) {
   const { mode, form, updateField, fieldErrors } = state;
   return (
     <div className="flex flex-col gap-4">

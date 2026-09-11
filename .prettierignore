@@ -1,0 +1,11 @@
+node_modules
+dist
+pnpm-lock.yaml
+public
+
+# Vendored verbatim from another repo — keep byte-identical to source
+.claude/skills/security-audit
+
+# Hand-written prose, not code
+docs
+CONTEXT.md

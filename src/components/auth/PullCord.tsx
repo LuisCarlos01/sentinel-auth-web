@@ -9,7 +9,14 @@ const SWING_BACK_SPRING = { type: 'spring', stiffness: 140, damping: 7 } as cons
 
 function SunIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+    <svg
+      viewBox="0 0 24 24"
+      className="h-3.5 w-3.5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+    >
       <circle cx="12" cy="12" r="4.5" />
       <path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8l1.8-1.8M18 6l1.8-1.8" />
     </svg>
@@ -101,7 +108,10 @@ export function PullCord({
 
   return (
     <div className={className} onMouseEnter={nudge}>
-      <motion.div className="flex flex-col items-center" style={{ transformOrigin: 'top center', rotate: nudgeRotate }}>
+      <motion.div
+        className="flex flex-col items-center"
+        style={{ transformOrigin: 'top center', rotate: nudgeRotate }}
+      >
         {/* corda: acompanha a posição do pingente (comprimento + ângulo ao
             vivo), em vez de só esticar na vertical */}
         <motion.div
