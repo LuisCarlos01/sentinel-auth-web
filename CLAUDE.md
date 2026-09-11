@@ -32,3 +32,14 @@ default; open only the files the change touches.
 
 When a ticket touches one of these technologies, link the file from the ticket body, so
 `/implement` finds it in a clean context.
+
+### Security audit
+
+`.claude/skills/security-audit/` — run with `/security-audit [path]` or "auditar segurança".
+Sourced from [devfraga/skills-sujeito-programador](https://github.com/devfraga/skills-sujeito-programador/tree/main/security-audit),
+copied verbatim. Written for Next.js/React projects (Server Actions, Prisma, Stripe, Auth.js)
+— this repo is a plain Vite SPA with no backend of its own (real API is `sentinel-auth-api`,
+audited separately), so most Next-specific checks (`refs/nextjs-checklist.md`,
+`refs/proxy-middleware.md`) won't find anything to check here; the parts that still apply are
+dependency audit (`npm audit`), tracked secrets, and general XSS/auth-flow review of `src/auth/`.
+Never auto-patches — proposes fixes only.
