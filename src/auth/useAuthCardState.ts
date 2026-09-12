@@ -17,6 +17,7 @@ export function useAuthCardState() {
 
   const toggleMode = () => {
     setMode((m) => (m === 'login' ? 'register' : 'login'));
+    setForm(initialFormState);
     setFormError(null);
     setNotice(null);
     setFieldErrors({});
